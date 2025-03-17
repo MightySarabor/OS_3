@@ -26,7 +26,7 @@ public class App {
                 tx.rollbackTransaction();
             } else {
                 System.out.println("Kein Konflikt, Commit wird durchgeführt...");
-                tx.commitTransaction();
+                //tx.commitTransaction();
             }
 
         } catch (IOException e) {
