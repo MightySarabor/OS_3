@@ -20,7 +20,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>org.example.BrainstormingTool</mainClass>
+                  <mainClass>org.example.TestZFSLibrary</mainClass>
                 </transformer>
               </transformers>
             </configuration>
