@@ -27,20 +27,20 @@ public class BrainstormingTool {
                     case 1 -> neueIdee();
                     case 2 -> ideenAuflisten();
                     case 3 -> ideeAnzeigen();
-                    case 4 -> ideeKommentieren();
+                    case 4 -> ideeKommentierenCLI();
                     case 5 -> {
                         System.out.println("Beenden...");
                         return;
                     }
                     default -> System.out.println("Ungültige Auswahl!");
                 }
-            } catch (IOException e) {
+            } catch (IOException | InterruptedException e) {
                 e.printStackTrace();
             }
         }
     }
 
-    private static void neueIdee() throws IOException {
+    private static void neueIdee() throws IOException, InterruptedException {
         System.out.print("Titel der Idee (keine Leerzeichen erlaubt): ");
         String titel = scanner.nextLine().replaceAll("\\s+", "_"); // Leerzeichen durch Unterstrich ersetzen
         String dateipfad = IDEEN_VERZEICHNIS + titel + ".txt";
@@ -50,7 +50,7 @@ public class BrainstormingTool {
             String antwort = scanner.nextLine().trim().toLowerCase();
 
             if (antwort.equals("ja")) {
-                ideeKommentieren2(titel); // Direkt ins Kommentieren wechseln
+                ideeKommentieren(titel); // Direkt ins Kommentieren wechseln
             } else {
                 System.out.println("Erstellung abgebrochen.");
             }
@@ -87,13 +87,13 @@ public class BrainstormingTool {
         System.out.println(inhalt);
     }
 
-    private static void ideeKommentieren() throws IOException {
+    private static void ideeKommentierenCLI() throws IOException, InterruptedException {
         System.out.print("Titel der Idee: ");
         String titel = scanner.nextLine().replaceAll("\\s+", "_");
-        ideeKommentieren2(titel);
+        ideeKommentieren(titel);
     }
 
-    private static void ideeKommentieren2(String titel) throws IOException {
+    private static void ideeKommentieren(String titel) throws IOException, InterruptedException {
         String dateipfad = IDEEN_VERZEICHNIS + titel + ".txt";
         String originalHash = ZFS_Library.checkIn(dateipfad);
         String newContent = scanner.nextLine();
