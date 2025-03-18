@@ -45,10 +45,10 @@ public class BrainstormingTool {
         String titel = scanner.nextLine().replaceAll("\\s+", "_"); // Leerzeichen durch Unterstrich ersetzen
         String dateipfad = IDEEN_VERZEICHNIS + titel + ".txt";
 
-        // Prüfen, ob die Datei bereits existiert
         if (new File(dateipfad).exists()) {
             System.out.println("⚠️ Die Idee existiert bereits. Möchtest du sie kommentieren? (ja/nein)");
             String antwort = scanner.nextLine().trim().toLowerCase();
+
             if (antwort.equals("ja")) {
                 ideeKommentieren2(titel); // Direkt ins Kommentieren wechseln
             } else {
@@ -57,20 +57,20 @@ public class BrainstormingTool {
             return;
         }
 
-        // Neue Idee erstellen
         System.out.print("Beschreibung der Idee: ");
         String beschreibung = scanner.nextLine();
-
         ZFS_Library.writeFile(dateipfad, beschreibung);
     }
 
     private static void ideenAuflisten() {
         File ordner = new File(IDEEN_VERZEICHNIS);
         File[] dateien = ordner.listFiles();
+
         if (dateien == null || dateien.length == 0) {
             System.out.println("Keine Ideen vorhanden.");
             return;
         }
+
         System.out.println("Gespeicherte Ideen:");
         for (File datei : dateien) {
             System.out.println("- " + datei.getName().replace(".txt", ""));
@@ -95,9 +95,8 @@ public class BrainstormingTool {
 
     private static void ideeKommentieren2(String titel) throws IOException {
         String dateipfad = IDEEN_VERZEICHNIS + titel + ".txt";
-
         System.out.print("Neuer Kommentar (vorherigen Inhalt überschreiben): ");
-        // Datei überschreiben
+
         ZFS_Library.overwriteFile(dateipfad);
     }
 }
