@@ -20,7 +20,7 @@
             <configuration>
               <transformers>
                 <transformer>
-                  <mainClass>org.example.App</mainClass>
+                  <mainClass>org.example.BrainstormingTool</mainClass>
                 </transformer>
               </transformers>
             </configuration>
