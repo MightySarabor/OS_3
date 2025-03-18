@@ -95,8 +95,10 @@ public class BrainstormingTool {
 
     private static void ideeKommentieren2(String titel) throws IOException {
         String dateipfad = IDEEN_VERZEICHNIS + titel + ".txt";
-        System.out.print("Neuer Kommentar (vorherigen Inhalt überschreiben): ");
-
-        ZFS_Library.overwriteFile(dateipfad);
+        String originalHash = ZFS_Library.checkIn(dateipfad);
+        String newContent = scanner.nextLine();
+        String newHash = ZFS_Library.checkIn(dateipfad);
+        ZFS_Library.overwriteFile(dateipfad, newContent);
+        ZFS_Library.checkout(originalHash, newHash);
     }
 }
