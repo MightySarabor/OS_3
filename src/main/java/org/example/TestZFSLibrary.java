@@ -28,7 +28,7 @@ public class TestZFSLibrary {
 
         try {
             if (randomValue < 40) {
-                // 50% Wahrscheinlichkeit: Datei lesen
+                // 40% Wahrscheinlichkeit: Datei lesen
                 ZFS_Library.readFile(filePath);
                 readOperations.incrementAndGet();
             } else if (randomValue < 95) {
